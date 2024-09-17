@@ -1,4 +1,3 @@
-// pages/api/dashboardData.js
 import { NextApiRequest, NextApiResponse } from "next";
 
 interface Transaction {
