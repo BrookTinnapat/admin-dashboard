@@ -19,13 +19,19 @@ const mockUsers = [
   },
 ];
 
-function UserList() {
+function UserListTable() {
   return (
     <Card className="mx-auto max-w-2xl ">
       <CardHeader>
         <CardTitle className="text-xl font-bold">User List</CardTitle>
       </CardHeader>
+
       <CardContent>
+        <input
+          type="text"
+          placeholder="Search name..."
+          className="mb-4 w-full p-2 bg-slate-800 rounded-md"
+        />
         <Table>
           <TableHeader>
             <TableRow>
@@ -49,4 +55,4 @@ function UserList() {
   );
 }
 
-export default UserList;
+export default UserListTable;
