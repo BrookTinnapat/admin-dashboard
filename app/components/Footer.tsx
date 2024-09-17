@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Footer = () => {
   return (
-    <div className="mt-[50px] p-[20px] flex items-center justify-between bg-black text-white">
+    <div className="p-[20px] flex items-center justify-between bg-white text-black dark:text-white dark:bg-black">
       <div className="flex-1 flex flex-col gap-[14px]">
         <div className="flex items-center gap-[10px]">
           {/* <Image src="/logo.png" alt="lama blog" width={50} height={50} /> */}

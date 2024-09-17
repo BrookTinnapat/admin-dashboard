@@ -1,8 +1,5 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/1ADs2FRNaQg
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
+"use client";
+
 import {
   Card,
   CardHeader,
@@ -13,11 +10,14 @@ import {
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 function LoginPage() {
+  const router = useRouter();
+
   return (
-    <div className="flex flex-col items-center justify-center mt-[25vh]">
-      <Card className="mx-auto max-w-sm ">
+    <div className="flex flex-col items-center justify-center min-h-screen w-full bg-gray-500">
+      <Card className="mx-auto max-w-sm w-full">
         <CardHeader className="space-y-1">
           <CardTitle className="text-2xl font-bold">Login</CardTitle>
           <CardDescription>
@@ -39,9 +39,18 @@ function LoginPage() {
               <Label htmlFor="password">Password</Label>
               <Input id="password" type="password" required />
             </div>
+            <div className="hover:text-gray-400 hover:underline text-sm">
+              Forget Password?
+            </div>
             <Button type="submit" className="w-full">
               Login
             </Button>
+          </div>
+          <div
+            className="hover:underline flex justify-center mt-10"
+            onClick={() => router.push("#")}
+          >
+            Create an account.
           </div>
         </CardContent>
       </Card>

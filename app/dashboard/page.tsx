@@ -1,13 +1,17 @@
 import React from "react";
+import UserList from "../components/UserList";
 
 function Dashboard() {
-  const mockEntries = [
-    { id: 1, title: "Entry 1", content: "This is the content of entry 1" },
-    { id: 2, title: "Entry 2", content: "This is the content of entry 2" },
-    { id: 3, title: "Entry 3", content: "This is the content of entry 3" },
-  ];
-
-  return <div>dashboard</div>;
+  return (
+    <div className="space-y-2 h-full">
+      <div className="flex items-center justify-between space-y-2">
+        <h2 className="text-2xl font-bold tracking-tight">
+          Hi, Welcome back 👋 Username
+        </h2>
+      </div>
+      <UserList />
+    </div>
+  );
 }
 
 export default Dashboard;
