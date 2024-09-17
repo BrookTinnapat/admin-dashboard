@@ -48,6 +48,7 @@ function Dashboard() {
     <div className="space-y-2 h-full">
       <div className="flex min-h-screen w-full flex-col">
         <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
+          <h1 className="font-bold text-xl">Welcome Back, Username</h1>
           <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
             <Card x-chunk="dashboard-01-chunk-0">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -113,12 +114,14 @@ function Dashboard() {
                     Recent transactions from your store.
                   </CardDescription>
                 </div>
-                <Button asChild size="sm" className="ml-auto gap-1">
-                  <Link href="#">
-                    View All
-                    <ArrowUpRight className="h-4 w-4" />
-                  </Link>
-                </Button>
+
+                <div className="ml-auto gap-1 ">
+                  <input
+                    className="p-2 bg-slate-600 rounded-sm"
+                    type="text"
+                    placeholder="Search name here..."
+                  />
+                </div>
               </CardHeader>
               <CardContent>
                 <Table>
@@ -327,9 +330,8 @@ function Dashboard() {
           </div>
         </main>
       </div>
-
       <BarGraph />
-      <UserList />
+      {/* <UserList /> */}
     </div>
   );
 }

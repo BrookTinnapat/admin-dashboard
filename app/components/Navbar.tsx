@@ -18,6 +18,8 @@ import {
   DropdownMenuShortcut,
 } from "@/components/ui/dropdown-menu";
 import { useRouter } from "next/navigation";
+import Bars from "../../public/bars.svg";
+import Image from "next/image";
 
 const Navbar = () => {
   // const { setTheme } = useTheme();
@@ -25,7 +27,29 @@ const Navbar = () => {
 
   return (
     <nav className="flex justify-between items-center p-4 bg-white dark:bg-black text-black dark:text-white">
-      <div>SOLIDITHAI</div>
+      <div className="hidden md:block text-xl font-bold">SOLIDITHAI</div>
+      <div className="md:hidden">
+        <DropdownMenu>
+          <DropdownMenuTrigger>Open page</DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuLabel>My Account</DropdownMenuLabel>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>Profile</DropdownMenuItem>
+            <DropdownMenuItem>Billing</DropdownMenuItem>
+            <DropdownMenuItem>Team</DropdownMenuItem>
+            <DropdownMenuItem>Subscription</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      </div>
+      <Link href="/dashboard" className="hover:underline">
+        Home
+      </Link>
+      <Link href="/products" className="hover:underline">
+        Products
+      </Link>
+      <Link href="/" className="hover:underline">
+        Customers
+      </Link>
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
           <Button variant="ghost" className="relative h-8 w-8 rounded-full">
