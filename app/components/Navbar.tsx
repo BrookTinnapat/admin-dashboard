@@ -150,14 +150,23 @@ const Navbar = () => {
           </DropdownMenu>
         </div>
       </div>
-      <div className="hidden md:flex justify-end items-center gap-5">
-        <Link href="/dashboard" className="hover:underline">
+      <div className="hidden md:flex justify-end items-center gap-5 ">
+        <Link
+          href="/dashboard"
+          className="hover:text-gray-200 hover:duration-200 ease-in-out text-gray-400"
+        >
           Dashboard
         </Link>
-        <Link href="/products" className="hover:underline">
+        <Link
+          href="/products"
+          className="hover:text-gray-200 hover:duration-200 ease-in-out text-gray-400"
+        >
           Products
         </Link>
-        <Link href="/" className="hover:underline">
+        <Link
+          href="/"
+          className="hover:text-gray-200 hover:duration-200 ease-in-out text-gray-400"
+        >
           Customers
         </Link>
 
