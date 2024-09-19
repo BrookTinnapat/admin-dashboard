@@ -3,23 +3,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import {
-  File,
-  Home,
-  LineChart,
-  ListFilter,
-  MoreHorizontal,
-  Package,
-  Package2,
-  PanelLeft,
-  PlusCircle,
-  Search,
-  Settings,
-  ShoppingCart,
-  Users2,
-} from "lucide-react";
-
+import { ListFilter, PlusCircle, Search, MoreHorizontal } from "lucide-react";
+import { useEffect, useState } from "react";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -41,10 +26,9 @@ import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
   DropdownMenuContent,
-  DropdownMenuItem,
   DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
+  DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import {
@@ -56,15 +40,6 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { useEffect, useState } from "react";
-import { NextRequest, NextResponse } from "next/server";
-import { log } from "console";
 
 type ProductsData = {
   id: number;
@@ -78,22 +53,48 @@ type ProductsData = {
 
 function ProductsPage() {
   const [data, setData] = useState<ProductsData[] | null>(null);
+  const [searchText, setSearchText] = useState("");
+  const [selectedStatuses, setSelectedStatuses] = useState<string[]>([
+    "Active",
+    "Draft",
+    "Archived",
+  ]);
 
   useEffect(() => {
     const fetchData = async () => {
       const res = await fetch("/api/productsData");
       const json: ProductsData[] = await res.json();
       setData(json);
-      console.log(json);
     };
     fetchData();
   }, []);
 
+  // Filtered data based on search and selected status
+  const filteredData = data
+    ? data.filter(
+        (item) =>
+          item.name.toLowerCase().includes(searchText.toLowerCase()) &&
+          selectedStatuses.includes(item.status)
+      )
+    : [];
+
+  const handleStatusChange = (status: string) => {
+    setSelectedStatuses((prevStatuses) =>
+      prevStatuses.includes(status)
+        ? prevStatuses.filter((s) => s !== status)
+        : [...prevStatuses, status]
+    );
+  };
+
+  const handleDeleted = (id: number) => {
+    setData((prevData) => prevData?.filter((item) => item.id !== id) || null);
+  };
+
   if (!data) return <div>Loading...</div>;
 
   return (
-    <div className="flex flex-col">
-      <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
+    <div className="flex p-4 min-h-screen w-full flex-col bg-muted/40 p-4">
+      <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-8">
         <Breadcrumb className="hidden sm:flex">
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -103,9 +104,7 @@ function ProductsPage() {
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink asChild>
-                <Link href="">Products</Link>
-              </BreadcrumbLink>
+              <BreadcrumbPage>Products</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
@@ -114,6 +113,8 @@ function ProductsPage() {
           <Input
             type="search"
             placeholder="Search..."
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
             className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
           />
         </div>
@@ -121,15 +122,7 @@ function ProductsPage() {
       <main className="grid flex-1 items-start gap-4 p-4 sm:px-6 sm:py-0 md:gap-8">
         <Tabs defaultValue="all">
           <div className="flex items-center">
-            <TabsList>
-              <TabsTrigger value="all">All</TabsTrigger>
-              <TabsTrigger value="active">Active</TabsTrigger>
-              <TabsTrigger value="draft">Draft</TabsTrigger>
-              <TabsTrigger value="archived" className="hidden sm:flex">
-                Archived
-              </TabsTrigger>
-            </TabsList>
-            <div className="ml-auto flex items-center gap-2">
+            <div className="ml-auto flex items-center gap-2 pt-2">
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button variant="outline" size="sm" className="h-8 gap-1">
@@ -140,13 +133,25 @@ function ProductsPage() {
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">
-                  <DropdownMenuLabel>Filter by</DropdownMenuLabel>
-                  <DropdownMenuSeparator />
-                  <DropdownMenuCheckboxItem checked>
+                  <DropdownMenuLabel>Filter by Status</DropdownMenuLabel>
+                  <DropdownMenuCheckboxItem
+                    checked={selectedStatuses.includes("Active")}
+                    onCheckedChange={() => handleStatusChange("Active")}
+                  >
                     Active
                   </DropdownMenuCheckboxItem>
-                  <DropdownMenuCheckboxItem>Draft</DropdownMenuCheckboxItem>
-                  <DropdownMenuCheckboxItem>Archived</DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem
+                    checked={selectedStatuses.includes("Draft")}
+                    onCheckedChange={() => handleStatusChange("Draft")}
+                  >
+                    Draft
+                  </DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem
+                    checked={selectedStatuses.includes("Archived")}
+                    onCheckedChange={() => handleStatusChange("Archived")}
+                  >
+                    Archived
+                  </DropdownMenuCheckboxItem>
                 </DropdownMenuContent>
               </DropdownMenu>
               <Button size="sm" className="h-8 gap-1">
@@ -189,7 +194,7 @@ function ProductsPage() {
                     </TableRow>
                   </TableHeader>
                   <TableBody>
-                    {data.map((item) => (
+                    {filteredData.map((item) => (
                       <TableRow key={item.id}>
                         <TableCell className="hidden sm:table-cell">
                           <Image
@@ -230,7 +235,11 @@ function ProductsPage() {
                             <DropdownMenuContent align="end">
                               <DropdownMenuLabel>Actions</DropdownMenuLabel>
                               <DropdownMenuItem>Edit</DropdownMenuItem>
-                              <DropdownMenuItem>Delete</DropdownMenuItem>
+                              <DropdownMenuItem
+                                onClick={() => handleDeleted(item.id)}
+                              >
+                                Delete
+                              </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
                         </TableCell>
@@ -241,7 +250,8 @@ function ProductsPage() {
               </CardContent>
               <CardFooter>
                 <div className="text-xs text-muted-foreground">
-                  Showing <strong>1-10</strong> of <strong>32</strong> products
+                  Showing <strong>{filteredData.length}</strong> of
+                  <strong> {data.length}</strong> products
                 </div>
               </CardFooter>
             </Card>
