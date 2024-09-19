@@ -81,6 +81,7 @@ function UserListsPage() {
   const [selectedUser, setSelectedUser] = useState<userData | null>(null); // State for selected user
   const [showModal, setShowModal] = useState(false); // State for modal visibility
   const [isMdScreen, setIsMdScreen] = useState(false); // Track screen size
+  const [searchText, setSearchText] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
@@ -107,10 +108,29 @@ function UserListsPage() {
     }
   };
 
+  const searchData = data
+    ? data.filter((item) =>
+        item.name.toLowerCase().includes(searchText.toLocaleLowerCase())
+      )
+    : [];
+
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40">
       <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
-        <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
+        <Breadcrumb className="hidden sm:flex">
+          <BreadcrumbList>
+            <BreadcrumbItem>
+              <BreadcrumbLink asChild>
+                <Link href="/dashboard">Dashboard</Link>
+              </BreadcrumbLink>
+            </BreadcrumbItem>
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbPage>User Lists</BreadcrumbPage>
+            </BreadcrumbItem>
+          </BreadcrumbList>
+        </Breadcrumb>
+        <header className="sticky top-0 z-30 flex h-14 items-center gap-4 bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6">
           {/* Header Code (omitted for brevity) */}
         </header>
 
@@ -129,8 +149,10 @@ function UserListsPage() {
                       <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
                       <Input
                         type="search"
-                        placeholder="Search..."
+                        value={searchText}
+                        placeholder="Search name here..."
                         className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
+                        onChange={(e) => setSearchText(e.target.value)}
                       />
                     </div>
                     <Table>
@@ -143,15 +165,18 @@ function UserListsPage() {
                           <TableHead className="hidden md:table-cell">
                             Created Date
                           </TableHead>
+                          <TableHead className="hidden md:table-cell">
+                            Actions
+                          </TableHead>
                         </TableRow>
                       </TableHeader>
 
                       <TableBody>
-                        {data?.map((user) => (
+                        {searchData?.map((user) => (
                           <TableRow
                             className="bg-accent cursor-pointer"
                             key={user.id}
-                            onClick={() => handleUserClick(user)} // Set selected user on click
+                            onClick={() => handleUserClick(user)}
                           >
                             <TableCell>
                               <div className="font-medium">{user.name}</div>
@@ -167,7 +192,7 @@ function UserListsPage() {
                             <TableCell className="hidden md:table-cell">
                               {user.createdAt}
                             </TableCell>
-                            <TableCell className="text-right">
+                            <TableCell className="text-right flex justify-start">
                               <DropdownMenu>
                                 <DropdownMenuTrigger asChild>
                                   <Button
@@ -180,7 +205,6 @@ function UserListsPage() {
                                   </Button>
                                 </DropdownMenuTrigger>
                                 <DropdownMenuContent align="end">
-                                  <DropdownMenuLabel>Actions</DropdownMenuLabel>
                                   <DropdownMenuItem>Edit</DropdownMenuItem>
                                   <DropdownMenuItem>Delete</DropdownMenuItem>
                                 </DropdownMenuContent>
@@ -198,11 +222,10 @@ function UserListsPage() {
 
           {/* User Detail Side Card */}
           <div>
+            {/* Md screen or lower */}
             {isMdScreen ? (
               <Dialog open={showModal} onOpenChange={setShowModal}>
-                <DialogTrigger asChild>
-                  {/* Placeholder for triggering the modal manually */}
-                </DialogTrigger>
+                <DialogTrigger asChild></DialogTrigger>
                 {selectedUser && (
                   <DialogContent>
                     <Card>
@@ -261,7 +284,7 @@ function UserListsPage() {
                           </dl>
                         </div>
                       </CardContent>
-                      <CardFooter className="flex flex-row items-center border-t bg-muted/50 px-6 py-3">
+                      <CardFooter className="flex flex-row items-center bg-muted/50 px-6 py-3">
                         <div className="text-xs text-muted-foreground">
                           Updated on {selectedUser.createdAt}
                         </div>
@@ -336,7 +359,7 @@ function UserListsPage() {
             ) : (
               <Card>
                 <CardContent>
-                  <div className="text-center">
+                  <div className="text-center pt-5">
                     Select a user to view details
                   </div>
                 </CardContent>

@@ -53,7 +53,7 @@ type ProductsData = {
 
 function ProductsPage() {
   const [data, setData] = useState<ProductsData[] | null>(null);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [searchText, setSearchText] = useState("");
   const [selectedStatuses, setSelectedStatuses] = useState<string[]>([
     "Active",
     "Draft",
@@ -73,7 +73,7 @@ function ProductsPage() {
   const filteredData = data
     ? data.filter(
         (item) =>
-          item.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+          item.name.toLowerCase().includes(searchText.toLowerCase()) &&
           selectedStatuses.includes(item.status)
       )
     : [];
@@ -113,8 +113,8 @@ function ProductsPage() {
           <Input
             type="search"
             placeholder="Search..."
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
+            value={searchText}
+            onChange={(e) => setSearchText(e.target.value)}
             className="w-full rounded-lg bg-background pl-8 md:w-[200px] lg:w-[336px]"
           />
         </div>
