@@ -12,7 +12,7 @@ const Footer = () => {
           <div className="flex-1 flex flex-col gap-[14px]">
             <div className="flex items-center gap-[10px]">
               {/* <Image src="/logo.png" alt="lama blog" width={50} height={50} /> */}
-              <h1 className="text-xl hidden md:block">SOLIDITHAI</h1>
+              <h1 className="text-xl hidden md:block">FOOTER</h1>
             </div>
             <p className="font-[300] w-max-[500px] hidden md:block">
               Lorem, ipsum dolor sit amet consectetur adipisicing elit. Enim
@@ -50,7 +50,6 @@ const Footer = () => {
           <Link href="/">Youtube</Link>
         </div>
       </div> */}
-          <div>@ 2024 SOLIDITHAI CO,. LTD</div>
         </footer>
       )}
     </>

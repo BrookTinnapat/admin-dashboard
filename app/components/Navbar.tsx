@@ -46,7 +46,7 @@ const Navbar = () => {
       {pathname === "/login" ? null : (
         <nav className="flex justify-between items-center p-4 bg-white dark:bg-black text-black dark:text-white">
           <div className="hidden md:flex text-xl font-bold gap-2">
-            <Link href="/dashboard">SOLIDITHAI</Link>
+            <Link href="/dashboard">ADMIN DASHBOARD</Link>
           </div>
           <div className="md:hidden flex items-center justify-between">
             <div className="">
@@ -77,11 +77,18 @@ const Navbar = () => {
                       Products
                     </Link>
                     <Link
-                      href="/users-list"
+                      href="/users-lists"
                       className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                     >
                       <Users2 className="h-5 w-5" />
                       Users
+                    </Link>
+                    <Link
+                      href="https://github.com/BrookTinnapat"
+                      target="_blank"
+                      className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                    >
+                      Github
                     </Link>
                   </nav>
                 </SheetContent>
@@ -167,6 +174,13 @@ const Navbar = () => {
               className="hover:text-gray-200 hover:duration-200 ease-in-out text-gray-400"
             >
               Users
+            </Link>
+            <Link
+              href="https://github.com/BrookTinnapat"
+              target="_blank"
+              className="hover:text-gray-200 hover:duration-200 ease-in-out text-gray-400"
+            >
+              Github
             </Link>
 
             {/* Toggle Theme */}
