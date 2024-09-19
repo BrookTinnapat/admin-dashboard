@@ -73,11 +73,11 @@ const Navbar = () => {
                   Products
                 </Link>
                 <Link
-                  href="#"
+                  href="/users-list"
                   className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
                 >
                   <Users2 className="h-5 w-5" />
-                  Customers
+                  Users
                 </Link>
               </nav>
             </SheetContent>
@@ -164,10 +164,10 @@ const Navbar = () => {
           Products
         </Link>
         <Link
-          href="/"
+          href="/user-lists"
           className="hover:text-gray-200 hover:duration-200 ease-in-out text-gray-400"
         >
-          Customers
+          Users
         </Link>
 
         {/* Toggle Theme */}

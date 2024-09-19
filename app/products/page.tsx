@@ -10,6 +10,7 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
+  BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Button } from "@/components/ui/button";
@@ -28,7 +29,6 @@ import {
   DropdownMenuLabel,
   DropdownMenuTrigger,
   DropdownMenuItem,
-  DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { Input } from "@/components/ui/input";
 import {
@@ -86,6 +86,10 @@ function ProductsPage() {
     );
   };
 
+  const handleDeleted = (id: number) => {
+    setData((prevData) => prevData?.filter((item) => item.id !== id) || null);
+  };
+
   if (!data) return <div>Loading...</div>;
 
   return (
@@ -100,9 +104,7 @@ function ProductsPage() {
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbLink asChild>
-                <Link href="">Products</Link>
-              </BreadcrumbLink>
+              <BreadcrumbPage>Products</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
@@ -233,7 +235,11 @@ function ProductsPage() {
                             <DropdownMenuContent align="end">
                               <DropdownMenuLabel>Actions</DropdownMenuLabel>
                               <DropdownMenuItem>Edit</DropdownMenuItem>
-                              <DropdownMenuItem>Delete</DropdownMenuItem>
+                              <DropdownMenuItem
+                                onClick={() => handleDeleted(item.id)}
+                              >
+                                Delete
+                              </DropdownMenuItem>
                             </DropdownMenuContent>
                           </DropdownMenu>
                         </TableCell>
@@ -244,8 +250,8 @@ function ProductsPage() {
               </CardContent>
               <CardFooter>
                 <div className="text-xs text-muted-foreground">
-                  Showing <strong>1-10</strong> of{" "}
-                  <strong>{filteredData.length}</strong> products
+                  Showing <strong>{filteredData.length}</strong> of
+                  <strong> {data.length}</strong> products
                 </div>
               </CardFooter>
             </Card>
