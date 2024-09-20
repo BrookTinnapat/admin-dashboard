@@ -43,7 +43,7 @@ const Navbar = () => {
 
   return (
     <>
-      {pathname === "/login" ? null : (
+      {pathname === "/" ? null : (
         <nav className="flex justify-between items-center p-4 sticky top-0 dark:bg-black bg-white z-50 shadow-md">
           <div className="hidden md:flex text-xl font-bold gap-2">
             <Link href="/dashboard">ADMIN DASHBOARD</Link>
@@ -149,7 +149,7 @@ const Navbar = () => {
                     <DropdownMenuItem>New Team</DropdownMenuItem>
                   </DropdownMenuGroup>
                   <DropdownMenuSeparator />
-                  <DropdownMenuItem onClick={() => router.push("/login")}>
+                  <DropdownMenuItem onClick={() => router.push("/")}>
                     Log out
                   </DropdownMenuItem>
                 </DropdownMenuContent>

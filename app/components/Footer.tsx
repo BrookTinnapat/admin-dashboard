@@ -7,7 +7,7 @@ const Footer = () => {
   const pathname = usePathname();
   return (
     <>
-      {pathname === "/login" ? null : (
+      {pathname === "/" ? null : (
         <footer className="p-[20px] shadow-inner flex items-center justify-between bg-white text-black dark:text-white dark:bg-black shadow-t-black">
           <div className="flex-1 flex flex-col gap-[14px]">
             <div className="flex items-center gap-[10px]">
