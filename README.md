@@ -1,7 +1,7 @@
 # Next.js 14 Admin Dashboard Starter Template with Shadcn-ui
 
 ## View Demo
-[Demo Link](#) https://admin-dashboard-git-dev-brooktinnapats-projects.vercel.app/?vercelToolbarCode=sCg5ZKWqMq1I_KP
+[Demo Link](https://admin-dashboard-git-dev-brooktinnapats-projects.vercel.app/?vercelToolbarCode=sCg5ZKWqMq1I_KP)
 
 ## Overview
 This is a starter template for building an admin dashboard with the following stack:
