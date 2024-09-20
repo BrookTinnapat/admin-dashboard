@@ -140,8 +140,8 @@ export function BarGraph() {
   );
 
   return (
-    <div className="space-y-2 h-full">
-      <div className="flex min-h-screen w-full flex-col">
+    <div className="space-y-2 h-full w-full">
+      <div className="flex  flex-col">
         <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
           <Card>
             <CardHeader className="flex flex-col items-stretch space-y-0 border-b p-0 sm:flex-row">

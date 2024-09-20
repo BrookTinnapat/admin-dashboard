@@ -44,7 +44,7 @@ const Navbar = () => {
   return (
     <>
       {pathname === "/login" ? null : (
-        <nav className="flex justify-between items-center p-4 bg-white dark:bg-black text-black dark:text-white">
+        <nav className="flex justify-between items-center p-4 sticky top-0 dark:bg-black bg-white z-50 shadow-md">
           <div className="hidden md:flex text-xl font-bold gap-2">
             <Link href="/dashboard">ADMIN DASHBOARD</Link>
           </div>
