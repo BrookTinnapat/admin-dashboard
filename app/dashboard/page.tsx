@@ -5,6 +5,7 @@ import { Activity, DollarSign, Users, CreditCard } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BarGraph } from "../components/charts/BarGraph";
 import Transanctions from "../components/Transanctions";
+import Spinner from "../components/Spinner";
 
 type Transaction = {
   customer: string;
@@ -44,13 +45,15 @@ function Dashboard() {
     fetchData();
   }, []);
 
-  if (!data) return <div>Loading...</div>;
+  if (!data) return <Spinner />;
 
   return (
     <div className="space-y-2 h-full">
       <div className="flex min-h-screen w-full flex-col">
+        <h1 className="font-bold text-xl pl-10 pt-10">
+          Welcome Back🫰, Demo User
+        </h1>
         <main className="flex flex-1 flex-col gap-4 p-4 md:gap-8 md:p-8">
-          <h1 className="font-bold text-xl">Welcome Back🫰, Demo User</h1>
           <div className="grid gap-4 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
             <Card>
               <CardHeader className="flex flex-row items-center justify-between">
@@ -80,6 +83,7 @@ function Dashboard() {
                 </p>
               </CardContent>
             </Card>
+
             <Card>
               <CardHeader className="flex flex-row items-center justify-between">
                 <CardTitle className="text-sm font-medium">Sales</CardTitle>
@@ -107,12 +111,11 @@ function Dashboard() {
               </CardContent>
             </Card>
           </div>
-
+          <BarGraph />
           <Transanctions
             transactions={data.transactions}
             recentSales={data.recentSales}
           />
-          <BarGraph />
         </main>
       </div>
     </div>

@@ -20,7 +20,7 @@ export default function handler(req: NextApiRequest, res: NextApiResponse) {
       totalSales: 25,
       createdAt: "2023-07-12T10:42:00Z",
       imageUrl:
-        "https://media.studio7thailand.com/154910/iPhone_16_Ultramarine_PDP_Image_Position_1a_Ultramarine_Color__TH-TH.jpg",
+        "https://www.apple.com/newsroom/images/2024/09/apple-introduces-iphone-16-and-iphone-16-plus/article/geo/Apple-iPhone-16-hero-geo-240909_inline.jpg.large.jpg",
     },
     {
       id: 2,

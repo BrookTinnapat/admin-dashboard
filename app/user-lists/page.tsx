@@ -65,6 +65,7 @@ import {
   PaginationItem,
 } from "@/components/ui/pagination";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"; // Import Shadcn Dialog
+import Spinner from "../components/Spinner";
 
 type userData = {
   id: number;
@@ -114,9 +115,10 @@ function UserListsPage() {
       )
     : [];
 
+  if (!data) return <Spinner />;
   return (
-    <div className="flex min-h-screen w-full flex-col bg-muted/40 p-1">
-      <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-14">
+    <div className="flex min-h-screen w-full flex-col bg-muted/40">
+      <div className="flex flex-col sm:gap-4 sm:py-4 sm:pl-16 ">
         <Breadcrumb className="hidden sm:flex">
           <BreadcrumbList>
             <BreadcrumbItem>
@@ -126,7 +128,7 @@ function UserListsPage() {
             </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
-              <BreadcrumbPage>User ists</BreadcrumbPage>
+              <BreadcrumbPage>Users List</BreadcrumbPage>
             </BreadcrumbItem>
           </BreadcrumbList>
         </Breadcrumb>
