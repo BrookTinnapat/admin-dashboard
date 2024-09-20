@@ -45,6 +45,7 @@ const Navbar = () => {
     <>
       {pathname === "/" ? null : (
         <nav className="flex justify-between items-center p-4 sticky top-0 dark:bg-black bg-white z-50 shadow-md">
+          {/* For sm Screen sidebar */}
           <div className="hidden md:flex text-xl font-bold gap-2">
             <Link href="/dashboard">ADMIN DASHBOARD</Link>
           </div>
@@ -64,7 +65,7 @@ const Navbar = () => {
                     </Link>
                     <Link
                       href="/dashboard"
-                      className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground"
+                      className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-current"
                     >
                       <Home className="h-5 w-5" />
                       Dashboard
@@ -117,7 +118,7 @@ const Navbar = () => {
                   </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
-              {/* Avatar Profile */}
+              {/* Avatar Profile And Dropdown */}
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
                   <Button
@@ -159,30 +160,31 @@ const Navbar = () => {
           <div className="hidden md:flex justify-end items-center gap-5 ">
             <Link
               href="/dashboard"
-              className="hover:text-gray-200 hover:duration-200 ease-in-out text-gray-400"
+              className="hover:text-black dark:hover:text-white hover:duration-200 ease-in-out text-gray-400"
             >
               Dashboard
             </Link>
             <Link
               href="/products"
-              className="hover:text-gray-200 hover:duration-200 ease-in-out text-gray-400"
+              className="hover:text-black dark:hover:text-white hover:duration-200 ease-in-out text-gray-400"
             >
               Products
             </Link>
             <Link
               href="/user-lists"
-              className="hover:text-gray-200 hover:duration-200 ease-in-out text-gray-400"
+              className="hover:text-black dark:hover:text-white hover:duration-200 ease-in-out text-gray-400"
             >
               Users
             </Link>
             <Link
               href="https://github.com/BrookTinnapat"
               target="_blank"
-              className="hover:text-gray-200 hover:duration-200 ease-in-out text-gray-400"
+              className="hover:text-black dark:hover:text-white hover:duration-200 ease-in-out text-gray-400"
             >
               Github
             </Link>
 
+            {/* For MD Screen upper Navbar */}
             {/* Toggle Theme */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
@@ -205,7 +207,7 @@ const Navbar = () => {
               </DropdownMenuContent>
             </DropdownMenu>
 
-            {/* Avatar Profile */}
+            {/* Avatar Profile And Dropdown*/}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
@@ -237,7 +239,7 @@ const Navbar = () => {
                   <DropdownMenuItem>New Team</DropdownMenuItem>
                 </DropdownMenuGroup>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={() => router.push("/login")}>
+                <DropdownMenuItem onClick={() => router.push("/")}>
                   Log out
                 </DropdownMenuItem>
               </DropdownMenuContent>
