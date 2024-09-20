@@ -40,6 +40,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import Spinner from "../components/Spinner";
 
 type ProductsData = {
   id: number;
@@ -90,11 +91,11 @@ function ProductsPage() {
     setData((prevData) => prevData?.filter((item) => item.id !== id) || null);
   };
 
-  if (!data) return <div>Loading...</div>;
+  if (!data) return <Spinner />;
 
   return (
     <div className="flex min-h-screen w-full flex-col bg-muted/40 p-4">
-      <header className="top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-8">
+      <header className="sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-8">
         <Breadcrumb className="hidden sm:flex">
           <BreadcrumbList>
             <BreadcrumbItem>

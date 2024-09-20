@@ -5,6 +5,7 @@ import { Activity, DollarSign, Users, CreditCard } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BarGraph } from "../components/charts/BarGraph";
 import Transanctions from "../components/Transanctions";
+import Spinner from "../components/Spinner";
 
 type Transaction = {
   customer: string;
@@ -44,7 +45,7 @@ function Dashboard() {
     fetchData();
   }, []);
 
-  if (!data) return <div>Loading...</div>;
+  if (!data) return <Spinner />;
 
   return (
     <div className="space-y-2 h-full">
