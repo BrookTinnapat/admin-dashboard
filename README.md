@@ -1,4 +1,33 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Next.js 14 Admin Dashboard Starter Template with Shadcn-ui
+
+## View Demo
+[Demo Link](#) https://admin-dashboard-git-dev-brooktinnapats-projects.vercel.app/?vercelToolbarCode=sCg5ZKWqMq1I_KP
+
+## Overview
+This is a starter template for building an admin dashboard with the following stack:
+
+- **Framework**: Next.js 14 (App Router)
+- **Language**: TypeScript
+- **Styling**: Tailwind CSS
+- **UI Components**: Shadcn-ui
+
+## Pages and Specifications
+
+| Page          | Specifications                                                                                         |
+|---------------|------------------------------------------------------------------------------------------------------- |
+| **Home**      | Set as Login page                                                                                      |
+| **Dashboard** | Cards with Recharts graphs to visualize analytics.                                                     |
+| **Products**  | Products lists, search and filter feature can use in here.                                             |
+| **Users List**  | Recent user and users list, support search feature.                                                  |
+
+## Getting Started
+
+Follow these steps to clone the repository and start the development server:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Kiranism/next-shadcn-dashboard-starter.git
+
 
 ## Getting Started
 
@@ -29,8 +58,3 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
